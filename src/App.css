@@ -1,4 +1,4 @@
-.video-container {
+video-container {
     margin-top: 20px;
     position: relative;
 }
@@ -8,4 +8,19 @@
     font-size: 18px;
     color: white;
     text-shadow: 2px 2px 4px black;
+}
+
+.modal-dialog {
+    max-width: 80%;
+}
+
+@media (max-width: 576px) {
+    .modal-dialog {
+        max-width: 100%;
+        margin: 1rem;
+    }
+}
+
+.modal {
+    display: block;
 }
