@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import VideoForm from "./components/VideoForm";
+import VideoPlayer from "./components/VideoPlayer";
 
-function App() {
+const App = () => {
+  const [videoUrl, setVideoUrl] = useState("");
+  const [captions, setCaptions] = useState([]);
+
+  const handleAddCaption = (caption) => {
+    setCaptions([...captions, caption]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container text-white m-3 p-2">
+      <div>
+        <h1>Add Captions To Your Videos</h1>
+        <VideoForm
+          onAddCaption={handleAddCaption}
+          onSetVideoUrl={setVideoUrl}
+        />
+      </div>
+      <div>
+        {videoUrl && <VideoPlayer videoUrl={videoUrl} captions={captions} />}
+      </div>
     </div>
   );
-}
+};
 
 export default App;
