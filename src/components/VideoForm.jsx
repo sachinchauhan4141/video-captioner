@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const VideoForm = ({ onAddCaption, onSetVideoUrl }) => {
+const VideoForm = ({ onAddCaption, onSetVideoUrl, onShowVideo }) => {
   const [videoUrl, setVideoUrl] = useState("");
   const [captionText, setCaptionText] = useState("");
   const [captionTimestamp, setCaptionTimestamp] = useState("");
@@ -8,6 +8,7 @@ const VideoForm = ({ onAddCaption, onSetVideoUrl }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSetVideoUrl(videoUrl);
+    onShowVideo(true);
   };
 
   const handleAddCaption = () => {
@@ -23,33 +24,29 @@ const VideoForm = ({ onAddCaption, onSetVideoUrl }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="video-url" className="form-label">
-          Video URL:
-        </label>
+      <div className="form-group mb-2">
+        <label htmlFor="video-url">Video URL:</label>
         <input
-          className="form-control"
           type="text"
+          className="form-control"
           id="video-url"
           value={videoUrl}
           onChange={(e) => setVideoUrl(e.target.value)}
           required
         />
       </div>
-      <div className="mb-3">
-        <label htmlFor="caption-text" className="form-label">
-          Caption Text:
-        </label>
+      <div className="form-group mb-2">
+        <label htmlFor="caption-text">Caption Text:</label>
         <textarea
-          id="caption-text"
           className="form-control"
+          id="caption-text"
           value={captionText}
           onChange={(e) => setCaptionText(e.target.value)}
           rows="4"
         ></textarea>
       </div>
-      <div className="mb-3">
-        <label htmlFor="caption-timestamp" className="form-label">
+      <div className="form-group mb-2">
+        <label htmlFor="caption-timestamp">
           Caption Timestamp (in seconds):
         </label>
         <input
@@ -64,12 +61,17 @@ const VideoForm = ({ onAddCaption, onSetVideoUrl }) => {
       <div className="mb-2">
         <button
           type="button"
+          className="btn btn-primary"
           onClick={handleAddCaption}
-          className="btn btn-secondary"
         >
           Add Caption
         </button>
-        <button type="submit" className="btn btn-success mx-2">
+        <button
+          type="submit"
+          className="btn btn-success mx-2"
+          data-toggle="modal"
+          data-target="#videoModal"
+        >
           Load Video
         </button>
       </div>

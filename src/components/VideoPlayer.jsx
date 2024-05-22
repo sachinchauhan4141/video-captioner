@@ -26,10 +26,21 @@ const VideoPlayer = ({ videoUrl, captions }) => {
 
   return (
     <div className="video-container position-relative">
-        <video ref={videoRef} src={videoUrl} controls autoPlay></video>
-        {currentCaption && <div className="caption position-absolute w-50 text-lg-center shadow-lg text-light" style={{bottom: "20px"}}>{currentCaption.text}</div>}
+      <video ref={videoRef} src={videoUrl} controls className="w-100" autoPlay></video>
+      {currentCaption && (
+        <div
+          className="caption position-absolute w-100 text-center"
+          style={{
+            bottom: "40px",
+            color: "white",
+            textShadow: "2px 2px 4px black",
+          }}
+        >
+          {currentCaption.text}
+        </div>
+      )}
     </div>
-);
+  );
 };
 
 export default VideoPlayer;

@@ -1,0 +1,11 @@
+.video-container {
+    margin-top: 20px;
+    position: relative;
+}
+
+.caption {
+    bottom: 40px;
+    font-size: 18px;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
